@@ -1,0 +1,5 @@
+<%= form_tag session_path do %>
+<%= text_field_tag "user[name]", nil, placeholder: "Username"%>
+<%= password_field_tag "user[password]", nil, placeholder: "Password"%>
+<%= submit_tag "Sign In" %>
+<% end %>
