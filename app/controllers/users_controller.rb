@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
   end
 
   def edit
@@ -18,5 +19,11 @@ class UsersController < ApplicationController
 
   def update
   end
+
+  private
+
+  # def user_params
+  #   params.require(:user).permit(:)
+  # end
 
 end #class end
