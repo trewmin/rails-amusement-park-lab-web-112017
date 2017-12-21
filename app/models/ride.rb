@@ -1,2 +1,27 @@
 class Ride < ActiveRecord::Base
-end
+  belongs_to :user
+  belongs_to :attraction
+
+   # has a method 'take_ride' that accounts for the user not having enough tickets (FAILED - 43)
+   # has a method 'take_ride' that accounts for the user not being tall enough (FAILED - 44)
+   # has a method 'take_ride' that accounts for the user not being tall enough and not having enough tickets (FAILED - 45)
+   # has a method 'take_ride' that updates ticket number (FAILED - 46)
+   # has a method 'take_ride' that updates the user's nausea (FAILED - 47)
+   # has a method 'take_ride' that updates the user's happiness (FAILED - 48)
+
+   def take_ride
+     if user.tickets < attraction.tickets && user.height < attraction.min_height
+       "Sorry. You do not have enough tickets the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
+     elsif user.tickets < attraction.tickets
+       "Sorry. You do not have enough tickets the #{attraction.name}."
+     elsif user.height < attraction.min_height
+       "Sorry. You are not tall enough to ride the #{attraction.name}."
+     else
+       user.tickets -= attraction.tickets
+       user.nausea += attraction.nausea_rating
+       user.happiness += attraction.happiness_rating
+       user.save
+     end
+   end
+
+end #class end
